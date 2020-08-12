@@ -1,0 +1,88 @@
+<div class="row">
+    <div class="col s12 ">
+        <div class="card ">
+            <div class="card-content white-text">
+                <div class="row">
+                     <div class="col s5">
+                         <h1>New User</h1>
+                        <form #userForm="ngForm" (ngSubmit)="onSubmit(userForm)">
+                            <h5>Booked :{{totalcount}}</h5>
+                            <h5>Remaining :{{remaining}}</h5>
+                            <input type="hidden" name="_id" #_id='ngModel' [(ngModel)]="userservice.selectedUser._id">
+                            <div class="row">
+                                <div class="input-feild col s12">
+                                    <label >Name:
+                                        <label class="red-text">*</label>
+                                    </label>
+                                    <input type="text" name="name" #name='ngModel' [(ngModel)]="userservice.selectedUser.name" placeholder="enter full name" required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-feild col s12">
+                                    <label >Start:
+                                        <label class="red-text">*</label>
+                                    </label>
+                                    <input type="text" name="from" #form='ngModel' [(ngModel)]="userservice.selectedUser.from" placeholder="enter your from starting point" required>
+                                   
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-feild col s12">
+                                    <label >Destination:
+                                        <label class="red-text">*</label>
+                                    </label>
+                                    <input type="text" name="to" #to='ngModel' [(ngModel)]="userservice.selectedUser.to" placeholder="enter your destination point" required>
+                                    
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-feild col s12">
+                                    <label >Phone No:
+                                        <label class="red-text">*</label>
+                                    </label>
+                                    <input type="number" name="phone" #phone='ngModel' [(ngModel)]="userservice.selectedUser.phone" placeholder="enter your phone no" required>
+                                    
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <button class="btn btn-custom right"(click)="resetForm(userForm)"> Resert</button>
+                                    <button class="btn btn-custom right"> Book</button>
+                                </div>
+                            </div>
+                         </form>
+
+                     </div>
+                     <div class="col s7">
+                         <h1>User List</h1>
+                        <table class="responsive-table highlight">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>StartPoint</th>
+                                    <th>Destination</th>
+                                    <th>Phone No</th>
+                                    <th></th>
+                                </tr>
+                                <tr *ngFor ="let user of userservice.user">
+                                    <td>{{user.name}}</td>
+                                    <td>{{user.from}}</td>
+                                    <td>{{user.to}}</td>
+                                    <td>{{user.phone}}</td>
+                                    <td>
+                                        <button class="action-btn" (click)="onEdit(user)">Edit</button>
+                                        <button class="action-btn"(click)="onCancel(user._id,userForm)">Cancel</button>
+                                    </td>
+                                </tr>
+                            </thead>
+                        </table>
+                     </div>
+                </div>
+
+            </div>
+
+        </div>
+     
+    </div>
+  </div>
+           
